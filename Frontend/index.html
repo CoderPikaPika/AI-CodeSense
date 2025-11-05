@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" dashboard-content="width=device-width, initial-scale=1" />
+    <title>CodeSense — AI Coding Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="site" role="application">
+        <div class="layout">
+            <aside class="sidebar" aria-label="Primary navigation">
+                <div class="side-brand">
+                    <img src="img1.png" style="width: 40px; height: 40px; background: transparent;">
+                    <span
+                        style="font-size:20px; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-weight: 700; letter-spacing: 2px;">
+                        CodeSense </span>
+                </div>
+                <nav class="side-links" aria-label="Main">
+                    <a onclick="showPage('dashboard')">📊 Dashboard</a>
+                    <a onclick="showPage('chatbot')">💬 Chat Room</a>
+                    <a onclick="showPage()">📜 Chat History</a>
+                    <a onclick="showPage()">⚙ Preferences</a>
+                    <a onclick="showPage()">👤 Account</a>
+                    <a class="side-logout" href="#">Logout</a>
+                </nav>
+            </aside>
+            <div id="main-content">
+                <!-- DashBoard -->
+                <div id="dashboard" class="dashboard-content displaying">
+                    <section class="hero" aria-labelledby="heroTitle">
+                        <span class="eyebrow">AI workspace</span>
+                        <h1 id="heroTitle" class="headline">An intelligent code editor that automates debugging,
+                            improves
+                            readability, and accelerates teams</h1>
+                        <p class="sub">CodeSense provides real‑time insights, collaboration, and guided learning across
+                            your
+                            stack. Detect bugs, explain issues, refactor safely, and ship with confidence — all inside a
+                            privacy‑first workspace.</p>
+                        <div class="actions">
+                            <a class="btn primary" onclick="login()">Sign in</a>
+                            <a class="btn" onclick="signup()">Sign up</a>
+                        </div>
+                    </section>
+
+                    <div class="section-label" aria-hidden="true">Everything you need to ship faster</div>
+                    <section class="grid" aria-label="Highlights" style="margin-top:12px">
+                        <article class="card stack">
+                            <div class="icon"><img alt="Review"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23d7fbe8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z'/%3E%3C/svg%3E" />
+                            </div>
+                            <h3>Smart Code Review</h3>
+                            <p>Automatically detects bugs, syntax issues, and logic errors. Provides instant
+                                explanations
+                                and guided fixes in‑editor.</p>
+                        </article>
+                        <article class="card stack">
+                            <div class="icon"><img alt="Debug"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23e9d5ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 9l-4-4'/%3E%3Cpath d='M15 9l4-4'/%3E%3Crect x='7' y='8' width='10' height='12' rx='2'/%3E%3Cpath d='M12 8V4'/%3E%3C/svg%3E" />
+                            </div>
+                            <h3>AI Debugging Assistant</h3>
+                            <p>Traces runtime and logical errors, explains root causes, and recommends solutions across
+                                Python, JS, C++, and more.</p>
+                        </article>
+                        <article class="card stack">
+                            <div class="icon"><img alt="Collab"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23c7d2fe' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M17 11a4 4 0 1 0 0-8'/%3E%3Cpath d='M3 21a6 6 0 0 1 12 0'/%3E%3Cpath d='M17 21v-2a6 6 0 0 0-4-5.65'/%3E%3C/svg%3E" />
+                            </div>
+                            <h3>Real‑time Collaboration</h3>
+                            <p>Multi‑user editing and review with integrated chat and shareable session links for remote
+                                teamwork.</p>
+                        </article>
+                        <article class="card stack">
+                            <div class="icon"><img alt="Learning"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%2392f0d6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5V6.5a2 2 0 0 1 1.2-1.8l6-2.7a2 2 0 0 1 1.6 0l6 2.7A2 2 0 0 1 20 6.5v13'/%3E%3Cpath d='M12 22v-9'/%3E%3Cpath d='M7 9l10-4'/%3E%3C/svg%3E" />
+                            </div>
+                            <h3>Learning Mode</h3>
+                            <p>Contextual walkthroughs and summaries to help new contributors ramp up faster.</p>
+                        </article>
+                        <article class="card stack">
+                            <div class="icon"><img alt="Metrics"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23a7f3d0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3v18h18'/%3E%3Crect x='7' y='12' width='3' height='6'/%3E%3Crect x='12' y='8' width='3' height='10'/%3E%3Crect x='17' y='5' width='3' height='13'/%3E%3C/svg%3E" />
+                            </div>
+                            <h3>Readability & Maintainability</h3>
+                            <p>Scores and metrics that identify complexity and redundancy with clear refactor
+                                suggestions.
+                            </p>
+                        </article>
+                        <article class="card stack">
+                            <div class="icon"><img alt="Security"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23fde68a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E" />
+                            </div>
+                            <h3>Security & Vulnerability Scan</h3>
+                            <p>Flags risks like SQL injection and unsafe evals, prioritizes severity, and suggests
+                                secure
+                                fixes.</p>
+                        </article>
+                        <article class="card stack">
+                            <div class="icon"><img alt="Refactor"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23fca5a5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpolyline points='3 12 5 12 21 12'/%3E%3Cpolyline points='3 18 5 18 21 18'/%3E%3Cpath d='M7 6v12'/%3E%3C/svg%3E" />
+                            </div>
+                            <h3>Guided Refactoring</h3>
+                            <p>Best‑practice restructuring with before/after diffs. Detects duplicates and inefficient
+                                loops.</p>
+                        </article>
+                        <article class="card stack">
+                            <div class="icon"><img alt="Integrations"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%2399f6e4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 8a3 3 0 1 0-6 0v8a3 3 0 1 0 6 0z'/%3E%3Cpath d='M6 8a3 3 0 1 0 6 0'/%3E%3C/svg%3E" />
+                            </div>
+                            <h3>One‑Click Integrations</h3>
+                            <p>Sync with GitHub/GitLab/Bitbucket, export diffs to PRs, connect Slack and CI/CD.</p>
+                        </article>
+                    </section>
+                </div>
+                <!-- Chatbot Section -->
+                <div id="chatbot" class="chat-container displaying hidden">
+                    <div id='chat-content' class="chat-content">
+                        <div class="ai-msg">
+                            👋 Hey there! I’m your CodeSense AI assistant. Ask me anything about debugging, refactoring,
+                            or
+                            your code!
+                        </div>
+
+                        <div class="user-msg">
+                            Can you explain how my recursion function is working?
+                        </div>
+
+                        <div class="ai-msg">
+                            Sure! Your recursion function keeps calling itself until the base condition is met — that
+                            prevents infinite loops.
+                        </div>
+                    </div>
+
+                    <div class="msg-box">
+                        <input type="text" placeholder="Type your message..." id="msg-box" class="chat-input" />
+                        <button class="send-btn" onclick="send()">Send</button>
+                    </div>
+                </div>
+                <!-- Preferences -->
+                <div id="preferences">
+
+                </div>
+            </div>
+        </div>
+        <!-- 🟢 Login Modal -->
+        <div id="login-modal" class="modal hidden">
+            <div class="modal-content ">
+                <span class="close-btn" onclick="closeModal('login-modal')">&times;</span>
+                <h1>Welcome back to <span>CodeSense</span></h1>
+                <p>Sign in to continue maximizing your AI-Coding experience.</p>
+                <form id="login-form">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email..." required />
+
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password..." required />
+
+                    <button type="submit" class="btn primary">Login</button>
+                    <p class="switch-link">Don’t have an account? <a
+                            onclick="switchModal(event,'login-modal','signup-modal')">Sign up</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- 🟣 Signup Modal -->
+        <div id="signup-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('signup-modal')">&times;</span>
+                <h1>Join <span>CodeSense</span></h1>
+                <p>Create your free account and start coding smarter.</p>
+                <form id="signup-form">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your name" required />
+
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email..." required />
+
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password..." required />
+
+                    <button type="submit" class="btn primary">Sign Up</button>
+                    <p class="switch-link">Already have an account? <a 
+                            onclick="switchModal(event,'signup-modal','login-modal')">Login</a></p>
+                </form>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div>© CodeSense · Privacy‑first</div>
+            <div>Questions? <span style="color:#92f0d6">sales@codesense.example</span></div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
