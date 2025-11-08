@@ -1,20 +1,33 @@
-const express=require("express");
-const PORT=3000;
-const app=express();
-const geminiRouter=require("./Backend/Routes/geminiRouter")
+import express from "express";
+import gemini from "./gemini.js";  // make sure this is exported correctly
 
+const app = express();
+const PORT = 3000;
 
-app.use(express.static('Frontend'));
+// Middleware
+app.use(express.static("FrontEn"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/",(req,res)=>{
-    res.sendFile('index.html',{ root : "./Frontend"});
-})
+// ✅ Serve your index.html properly
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: "./FrontEn" });
+});
 
-app.use(geminiRouter);
+// ✅ Async call to gemini() must use await
+app.post("/post", async (req, res) => {
+  try {
+    const prompt=req.body.data;
+    console.log(prompt);
+    const response = await gemini(prompt); // added await
+    console.log(response);
+    res.json({ message: "done", data: response });
+  } catch (error) {
+    console.error("Error in /post:", error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
 
-
-app.listen(PORT,()=>{
-    console.log("Server Started");
-})
+app.listen(PORT, () => {
+  console.log(`🚀 Server started on http://localhost:${PORT}`);
+});
