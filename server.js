@@ -1,33 +1,33 @@
-import express from "express";
-import gemini from "./gemini.js";  // make sure this is exported correctly
+const express=require("express");
+const PORT=3000;
+const app=express();
+const mongoose=require("mongoose");
+const URL="mongodb+srv://db1:FirstDatabase@cluster0.ebuknnv.mongodb.net/?appName=Cluster0";
+const geminiRouter=require("./Backend/Routes/geminiRouter");
+const auth=require("./Backend/Routes/loginRouter");
+const chat=require("./Backend/Routes/chatRouter");
+const http=require("http");
+const {Server}=require('socket.io');
+const server=http.createServer(app);
+const io= new Server(server);
 
-const app = express();
-const PORT = 3000;
-
-// Middleware
-app.use(express.static("FrontEn"));
+app.use(express.static('Frontend'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ✅ Serve your index.html properly
-app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: "./FrontEn" });
-});
+app.get("/",(req,res)=>{
+    res.sendFile('index.html',{ root : "./Frontend"});
+})
 
-// ✅ Async call to gemini() must use await
-app.post("/post", async (req, res) => {
-  try {
-    const prompt=req.body.data;
-    console.log(prompt);
-    const response = await gemini(prompt); // added await
-    console.log(response);
-    res.json({ message: "done", data: response });
-  } catch (error) {
-    console.error("Error in /post:", error);
-    res.status(500).json({ error: "Something went wrong" });
-  }
-});
+app.use(auth);
+app.use(geminiRouter);
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server started on http://localhost:${PORT}`);
+chat(io);
+
+
+mongoose.connect(URL).then(() => {
+  console.log("Connected to Mongo");
+  server.listen(PORT,() => {
+    console.log("Server Created.");
+  });
 });

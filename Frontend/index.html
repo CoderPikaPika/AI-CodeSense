@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
     </style>
@@ -29,24 +30,24 @@
                     <a onclick="showPage()">📜 Chat History</a>
                     <a onclick="showPage()">⚙ Preferences</a>
                     <a onclick="showPage()">👤 Account</a>
-                    <a class="side-logout" href="#">Logout</a>
+                    <a id="logout" class="side-logout hidden">Logout</a>
                 </nav>
             </aside>
             <div id="main-content">
                 <!-- DashBoard -->
                 <div id="dashboard" class="dashboard-content displaying">
-                    <section class="hero" aria-labelledby="heroTitle">
+                    <section id="dash-sec"class="hero" aria-labelledby="heroTitle">
                         <span class="eyebrow">AI workspace</span>
                         <h1 id="heroTitle" class="headline">An intelligent code editor that automates debugging,
                             improves
                             readability, and accelerates teams</h1>
-                        <p class="sub">CodeSense provides real‑time insights, collaboration, and guided learning across
+                        <p  id ="p" class="sub">CodeSense provides real‑time insights, collaboration, and guided learning across
                             your
                             stack. Detect bugs, explain issues, refactor safely, and ship with confidence — all inside a
                             privacy‑first workspace.</p>
                         <div class="actions">
-                            <a class="btn primary" onclick="login()">Sign in</a>
-                            <a class="btn" onclick="signup()">Sign up</a>
+                            <a id="logins" class="btn primary" onclick="login()">Sign in</a>
+                            <a id="signups" class="btn" onclick="signup()">Sign up</a>
                         </div>
                     </section>
 
@@ -156,13 +157,13 @@
                 <h1>Welcome back to <span>CodeSense</span></h1>
                 <p>Sign in to continue maximizing your AI-Coding experience.</p>
                 <form id="login-form">
-                    <label for="login-email">Email</label>
-                    <input type="email" id="login-email" placeholder="Enter your email..." required />
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" placeholder="Enter your Username..." required />
 
                     <label for="login-password">Password</label>
                     <input type="password" id="login-password" placeholder="Enter your password..." required />
 
-                    <button type="submit" class="btn primary">Login</button>
+                    <button  onclick="LogIn(event)" class="btn primary">Login</button>
                     <p class="switch-link">Don’t have an account? <a
                             onclick="switchModal(event,'login-modal','signup-modal')">Sign up</a></p>
                 </form>
@@ -176,8 +177,8 @@
                 <h1>Join <span>CodeSense</span></h1>
                 <p>Create your free account and start coding smarter.</p>
                 <form id="signup-form">
-                    <label for="signup-name">Full Name</label>
-                    <input type="text" id="signup-name" placeholder="Enter your name" required />
+                    <label for="signup-name">Username</label>
+                    <input type="text" id="signup-name" placeholder="Create your Username" required />
 
                     <label for="signup-email">Email</label>
                     <input type="email" id="signup-email" placeholder="Enter your email..." required />
@@ -185,7 +186,7 @@
                     <label for="signup-password">Password</label>
                     <input type="password" id="signup-password" placeholder="Create a password..." required />
 
-                    <button type="submit" class="btn primary">Sign Up</button>
+                    <button onclick="SignUp(event)" class="btn primary">Sign Up</button>
                     <p class="switch-link">Already have an account? <a 
                             onclick="switchModal(event,'signup-modal','login-modal')">Login</a></p>
                 </form>
@@ -197,7 +198,9 @@
             <div>Questions? <span style="color:#92f0d6">sales@codesense.example</span></div>
         </footer>
     </div>
-    <script src="script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js">
+    </script>
 </body>
 
 </html>
