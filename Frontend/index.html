@@ -30,18 +30,19 @@
                     <a onclick="showPage()">📜 Chat History</a>
                     <a onclick="showPage()">⚙ Preferences</a>
                     <a onclick="showPage()">👤 Account</a>
-                    <a id="logout" class="side-logout hidden">Logout</a>
+                    <a id="logout" class="side-logout hidden" onclick="disconnect()">Logout</a>
                 </nav>
             </aside>
             <div id="main-content">
                 <!-- DashBoard -->
                 <div id="dashboard" class="dashboard-content displaying">
-                    <section id="dash-sec"class="hero" aria-labelledby="heroTitle">
+                    <section id="dash-sec1" class="hero" aria-labelledby="heroTitle">
                         <span class="eyebrow">AI workspace</span>
                         <h1 id="heroTitle" class="headline">An intelligent code editor that automates debugging,
                             improves
                             readability, and accelerates teams</h1>
-                        <p  id ="p" class="sub">CodeSense provides real‑time insights, collaboration, and guided learning across
+                        <p id="p" class="sub">CodeSense provides real‑time insights, collaboration, and guided learning
+                            across
                             your
                             stack. Detect bugs, explain issues, refactor safely, and ship with confidence — all inside a
                             privacy‑first workspace.</p>
@@ -49,6 +50,16 @@
                             <a id="logins" class="btn primary" onclick="login()">Sign in</a>
                             <a id="signups" class="btn" onclick="signup()">Sign up</a>
                         </div>
+                    </section>
+                    <section id="dash-sec2" class="hero hidden" aria-labelledby="heroTitle">
+                        <span class="eyebrow">AI workspace</span>
+                        <h1 id="heroTitle1" class="headline"></h1>
+                        <a class="herolink" onclick="showPage('chatbot')"> Let's Get Started <i id='tom' class="fa-solid fa-arrow-up-right-from-square" style="font-size:20px ;color: #108964;"></i></a>
+                        <p id="p" class="sub">CodeSense provides real‑time insights, collaboration, and guided learning
+                            across
+                            your
+                            stack. Detect bugs, explain issues, refactor safely, and ship with confidence — all inside a
+                            privacy‑first workspace.</p>
                     </section>
 
                     <div class="section-label" aria-hidden="true">Everything you need to ship faster</div>
@@ -123,19 +134,14 @@
                 <!-- Chatbot Section -->
                 <div id="chatbot" class="chat-container displaying hidden">
                     <div id='chat-content' class="chat-content">
-                        <div class="ai-msg">
-                            👋 Hey there! I’m your CodeSense AI assistant. Ask me anything about debugging, refactoring,
-                            or
-                            your code!
-                        </div>
-
-                        <div class="user-msg">
-                            Can you explain how my recursion function is working?
-                        </div>
-
-                        <div class="ai-msg">
-                            Sure! Your recursion function keeps calling itself until the base condition is met — that
-                            prevents infinite loops.
+                        <div id='left-content' class="user-msg aileft">
+                            <p class= robotic-text>OctoCanes</p>
+                            <div class="ai-msg">
+                                👋 Hey there! I’m your CodeSense AI assistant. Ask me anything about debugging,
+                                refactoring,
+                                or
+                                your code! You may call me using the phrase '@AI'.
+                            </div>
                         </div>
                     </div>
 
@@ -163,7 +169,7 @@
                     <label for="login-password">Password</label>
                     <input type="password" id="login-password" placeholder="Enter your password..." required />
 
-                    <button  onclick="LogIn(event)" class="btn primary">Login</button>
+                    <button onclick="LogIn(event)" class="btn primary">Login</button>
                     <p class="switch-link">Don’t have an account? <a
                             onclick="switchModal(event,'login-modal','signup-modal')">Sign up</a></p>
                 </form>
@@ -187,7 +193,7 @@
                     <input type="password" id="signup-password" placeholder="Create a password..." required />
 
                     <button onclick="SignUp(event)" class="btn primary">Sign Up</button>
-                    <p class="switch-link">Already have an account? <a 
+                    <p class="switch-link">Already have an account? <a
                             onclick="switchModal(event,'signup-modal','login-modal')">Login</a></p>
                 </form>
             </div>

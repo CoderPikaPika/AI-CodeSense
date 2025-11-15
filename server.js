@@ -10,7 +10,9 @@ const http=require("http");
 const {Server}=require('socket.io');
 const server=http.createServer(app);
 const io= new Server(server);
+const cookieParser=require("cookie-parser")
 
+app.use(cookieParser());
 app.use(express.static('Frontend'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

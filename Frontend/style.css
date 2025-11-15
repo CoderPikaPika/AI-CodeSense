@@ -27,16 +27,12 @@ body {
   align-items: stretch;
   justify-content: center;
   padding: 28px;
-  background: radial-gradient(
-      1200px 600px at 20% 0%,
+  background: radial-gradient(1200px 600px at 20% 0%,
       rgba(16, 163, 127, 0.1),
-      transparent 40%
-    ),
-    radial-gradient(
-      900px 480px at 85% 10%,
+      transparent 40%),
+    radial-gradient(900px 480px at 85% 10%,
       rgba(139, 92, 246, 0.08),
-      transparent 45%
-    ),
+      transparent 45%),
     linear-gradient(180deg, #0a0b0f 0%, #06070b 100%);
   background-attachment: fixed, fixed, fixed;
   background-repeat: no-repeat;
@@ -88,11 +84,9 @@ body {
 .sidebar {
   width: 240px;
   height: 380px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.06)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.06));
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 12px;
   padding: 16px;
@@ -140,8 +134,8 @@ body {
   border-color: crimson !important
 }
 
-.side-logout:hover{
-  box-shadow:1px 1px 10px crimson !important;
+.side-logout:hover {
+  box-shadow: 1px 1px 10px crimson !important;
 }
 
 .dashboard-content {
@@ -172,11 +166,9 @@ body {
   border-radius: 16px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.05)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.05));
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
@@ -184,16 +176,12 @@ body {
   content: "";
   position: absolute;
   inset: -20%;
-  background: radial-gradient(
-      500px 260px at 50% 0%,
+  background: radial-gradient(500px 260px at 50% 0%,
       rgba(16, 163, 127, 0.12),
-      transparent 40%
-    ),
-    radial-gradient(
-      420px 220px at 20% 30%,
+      transparent 40%),
+    radial-gradient(420px 220px at 20% 30%,
       rgba(139, 92, 246, 0.1),
-      transparent 50%
-    );
+      transparent 50%);
   filter: blur(24px);
   z-index: 0;
 }
@@ -303,11 +291,9 @@ body {
 }
 
 .card {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.06)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.06));
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 14px;
   padding: 16px;
@@ -348,11 +334,9 @@ body {
   display: grid;
   place-items: center;
   flex: 0 0 48px;
-  background: linear-gradient(
-    135deg,
-    rgba(16, 163, 127, 0.25),
-    rgba(139, 92, 246, 0.18)
-  );
+  background: linear-gradient(135deg,
+      rgba(16, 163, 127, 0.25),
+      rgba(139, 92, 246, 0.18));
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -367,22 +351,18 @@ body {
 
 .chat-container {
   width: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.05)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.05));
   border: 1px solid var(--glass);
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   height: 500px;
   overflow: hidden;
-  scrollbar-color:linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.05)
-  );
+  scrollbar-color: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.05));
 }
 
 .chat-content {
@@ -398,12 +378,14 @@ body {
 .user-msg {
   padding: 12px 16px;
   border-radius: var(--radius);
-  max-width: 70%;
   line-height: 1.5;
 }
 
-.ai-msg {
+.aileft {
   align-self: flex-start;
+}
+
+.ai-msg {
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.05),
     0 0 12px rgba(180, 180, 180, 0.08);
@@ -412,15 +394,30 @@ body {
   backdrop-filter: blur(6px);
 }
 
-.user-msg {
+.userright {
   align-self: flex-end;
   border: 1px solid rgba(16, 163, 126, 0.781);
   /* border: 1px solid rgba(255, 255, 255, 0.08); */
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.05),
     0 0 12px rgba(180, 180, 180, 0.08);
+}
+
+.user-msg {
+  max-width: 70%;
   border-radius: 12px;
-  background: rgba(15, 15, 20, 0.6);
   backdrop-filter: blur(6px);
+}
+
+.robotic-text {
+  font-family: "Courier New", monospace;
+  /* Tech-style font */
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  margin-top: 10px;
+  color: #a8f0e6;
+  /* Soft cyan glow color */
+  padding-left: 10px;
+
 }
 
 .msg-box {
@@ -436,11 +433,9 @@ body {
   padding: 10px 14px;
   border-radius: var(--radius);
   border: 1px solid var(--glass);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.05)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.05));
   color: #eaf2ff;
 }
 
@@ -454,8 +449,8 @@ body {
   cursor: pointer;
 }
 
-.hidden{
-  display:none !important;
+.hidden {
+  display: none !important;
 }
 
 /* Footer */
@@ -478,6 +473,7 @@ body {
     font-size: 34px;
   }
 }
+
 /* 🔹 Modal Base */
 .modal {
   position: fixed;
@@ -532,7 +528,7 @@ body {
   top: 10px;
   font-size: 26px;
   color: #aaa;
-  margin-left:8px;
+  margin-left: 8px;
   margin-bottom: 8px;
   cursor: pointer;
 }
@@ -585,9 +581,9 @@ body {
   text-decoration: underline;
 }
 
-.notification{
+.notification {
   color: var(--bg);
-  display:flex ;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--accent);
@@ -609,6 +605,7 @@ body {
   transition: 0.3s;
   z-index: 100;
 }
+
 .herolink:hover {
   text-shadow: 0 0 10px #10a37f;
 }
@@ -619,10 +616,10 @@ body {
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
-  
-}
 
+}

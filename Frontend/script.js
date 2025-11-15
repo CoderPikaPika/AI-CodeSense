@@ -1,20 +1,52 @@
+
 const socket = io();
 
 socket.on("connect", () => {
     console.log("Connected");
 })
-socket.on('sendmessage', (msg) => {
-    const msgs = document.getElementById('chat-content');
+
+
+socket.on('sendmessage', async (msg) => {
+    const res=await fetchUsername();
+
+    const msgs = document.getElementById('left-content');
     const aiMsg = document.createElement("div");
+    const sender = document.createElement("p");
+
+    sender.classList.add('robotic-text');
+    sender.innerText = `${res.username}`;
     aiMsg.classList.add("ai-msg");
     aiMsg.innerHTML = `<p>${msg}</p>`;
+    msgs.appendChild(sender);
     msgs.appendChild(aiMsg);
 
 })
 
 
-function showPage(pageid) {
-    console.log("ran");
+async function LoginState() {
+    const res = await fetch("/api/verify", {
+        method: "GET",
+        credentials: "include"
+    });
+    const data = await res.json();
+    if (data.message === 'Valid') {
+        console.log(data.user);
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+async function showPage(pageid) {
+    if (pageid !== 'dashboard') {
+        const verified = await LoginState();
+        if (verified === false) {
+            alert("Please log in to continue");
+            showPage('dashboard');
+            return;
+        }
+    }
     const pages = document.getElementsByClassName("displaying");
     for (const item of pages) {
         item.classList.add("hidden");
@@ -95,24 +127,49 @@ async function LogIn(event) {
     const res = await response.json();
     if (res.message === "Present") {
         alert("Present");
-        greet(username);
+        document.getElementById("login-modal").classList.add("hidden");
+        document.getElementById("logins").classList.add("hidden");
+        document.getElementById("signups").classList.add("hidden");
+        location.reload()
+    }
+}
+async function disconnect() {
+    const response = await fetch("/api/disconnect", {
+        method: "POST",
+        credentials: "include"
+    })
+    const res = await response.json();
+    console.log(res);
+    if (res.message == 'LoggedOut') {
+        location.reload();
     }
 }
 
-function greet(username) {
-    document.getElementById("login-modal").classList.add("hidden");
-    document.getElementById("logout").classList.remove("hidden");
-    document.getElementById("logins").classList.add("hidden");
-    document.getElementById("signups").classList.add("hidden");
-    const heroTitle = document.getElementById("heroTitle");
-    const p = document.getElementById("p");
-    heroTitle.innerHTML = `Hello, ${username}`;
-    const container = document.getElementById("dash-sec");
-    const div = document.createElement("div");
-    div.classList.add("herolink");
-    div.innerHTML = `<a onclick=showPage('chatbot')> Let's Get Started <i id='tom' class="fa-solid fa-arrow-up-right-from-square" style="font-size:20px ;color: #108964;"></i></a>`;
-    container.insertBefore(div, p);
+async function fetchUsername() {
+    const response = await fetch("/api/username", {
+        method: "POST",
+        credentials: "include"
+    })
+    const res = await response.json();
+    return res;
 }
+async function greet() {
+    const res=await fetchUsername();
+    if (res.state === 'true') {
+        const heroTitle = document.getElementById("heroTitle1");
+        document.getElementById("dash-sec1").classList.add('hidden');
+        document.getElementById("dash-sec2").classList.remove('hidden');
+
+        heroTitle.innerHTML = `Hello, ${res.username}`;
+        document.getElementById("logout").classList.remove("hidden");
+    }
+    else {
+        document.getElementById("dash-sec2").classList.add('hidden');
+        document.getElementById("dash-sec1").classList.remove('hidden');
+        document.getElementById("logout").classList.add("hidden");
+    }
+}
+
 async function send() {
     const msgBox = document.getElementById("msg-box").value;
     document.getElementById("msg-box").value = "";
@@ -120,6 +177,7 @@ async function send() {
     const msgs = document.getElementById('chat-content');
     const userMsg = document.createElement("div");
     userMsg.classList.add("user-msg");
+    userMsg.classList.add("userright");
     userMsg.innerHTML = `<p>${msgBox}</p>`;
     msgs.appendChild(userMsg);
 
@@ -132,12 +190,17 @@ async function send() {
         })
         const response = await res.json();
         const output = response.response;
-        const aiMsg = document.createElement("div");
-        aiMsg.classList.add("ai-msg");
-        aiMsg.innerHTML = `<p>${output}</p>`;
-        msgs.appendChild(aiMsg);
+        const aiMsgBox = document.createElement("div");
+        aiMsgBox.classList.add("user-msg");
+        aiMsgBox.classList.add("aileft");
+        aiMsgBox.innerHTML = ` <p class= robotic-text>OctoCanes</p>
+                            <div class="ai-msg">
+                                <p>${output}</p>
+                            </div>`;
+        msgs.appendChild(aiMsgBox);
     }
     else {
         socket.emit('message', msgBox);
     }
 }
+window.addEventListener('DOMContentLoaded', greet);
