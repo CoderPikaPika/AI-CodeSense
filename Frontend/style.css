@@ -376,7 +376,7 @@ body {
 
 .ai-msg,
 .user-msg {
-  padding: 12px 16px;
+  padding: 10px 16px;
   border-radius: var(--radius);
   line-height: 1.5;
 }
@@ -413,7 +413,6 @@ body {
   /* Tech-style font */
   font-size: 18px;
   letter-spacing: 0.8px;
-  margin-top: 10px;
   color: #a8f0e6;
   /* Soft cyan glow color */
   padding-left: 10px;
@@ -422,7 +421,6 @@ body {
 
 .msg-box {
   display: flex;
-  gap: 10px;
   padding: 14px;
   border-top: 1px solid var(--glass);
   background: var(--panel);

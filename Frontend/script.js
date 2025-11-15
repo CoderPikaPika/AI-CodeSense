@@ -6,22 +6,25 @@ socket.on("connect", () => {
 })
 
 
-socket.on('sendmessage', async (msg) => {
-    const res=await fetchUsername();
-
-    const msgs = document.getElementById('left-content');
+socket.on('sendmessage', async (data) => {
+    const msg=data.msg;
+    const username=data.username;
+    const container = document.createElement("div");
+    container.classList.add('user-msg');
+    container.classList.add('aileft');
+    const msgs = document.getElementById('chat-content');
     const aiMsg = document.createElement("div");
     const sender = document.createElement("p");
 
     sender.classList.add('robotic-text');
-    sender.innerText = `${res.username}`;
+    sender.innerText = `${username}`;
     aiMsg.classList.add("ai-msg");
     aiMsg.innerHTML = `<p>${msg}</p>`;
-    msgs.appendChild(sender);
-    msgs.appendChild(aiMsg);
+    container.appendChild(sender);
+    container.appendChild(aiMsg);
+    msgs.appendChild(container);
 
 })
-
 
 async function LoginState() {
     const res = await fetch("/api/verify", {
@@ -200,7 +203,9 @@ async function send() {
         msgs.appendChild(aiMsgBox);
     }
     else {
-        socket.emit('message', msgBox);
+        const res=await fetchUsername();
+        const data={msg: msgBox,username: res.username};
+        socket.emit('message', data);
     }
 }
 window.addEventListener('DOMContentLoaded', greet);
