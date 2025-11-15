@@ -33,7 +33,14 @@ loginRouter.post("/api/login", async (req, res) => {
     bcrypt.compare(req.body.password, user.password, (err, result) => {
         if (result === true) {
             token = jwt.sign({ username }, "kukie",)
-            res.cookie('token', token);
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: true,             // required for HTTPS
+                sameSite: 'none',         // allows cross-origin cookies
+                path: '/',
+                maxAge: 24 * 60 * 60 * 1000, // optional: 1 day
+            });
+
             return res.json({ message: "Present" });
         }
         else {
@@ -42,23 +49,23 @@ loginRouter.post("/api/login", async (req, res) => {
     })
 })
 
-loginRouter.get("/api/verify",verifier,(req,res)=>{
-    res.json({message:"Valid", user: req.user})
+loginRouter.get("/api/verify", verifier, (req, res) => {
+    res.json({ message: "Valid", user: req.user })
 
 })
 
-loginRouter.post("/api/username",verifier,(req,res)=>{
-    if(req.user){
-    return res.json({username: req.user.username, state:"true"});
+loginRouter.post("/api/username", verifier, (req, res) => {
+    if (req.user) {
+        return res.json({ username: req.user.username, state: "true" });
     }
-    else{
-        return res.json({state:"false"});
+    else {
+        return res.json({ state: "false" });
     }
 })
 
-loginRouter.post("/api/disconnect",verifier, (req,res)=>{
+loginRouter.post("/api/disconnect", verifier, (req, res) => {
     res.clearCookie('token');
-    return res.json({message:'LoggedOut'});
+    return res.json({ message: 'LoggedOut' });
 })
 
 
@@ -69,7 +76,7 @@ function verifier(req, res, next) {
         return res.json({ message: "No Token" })
     }
 
-    jwt.verify(token, 'kukie', (err, user)=>{
+    jwt.verify(token, 'kukie', (err, user) => {
         if (err) {
             return res.json({ message: "Invalid Token" })
         }

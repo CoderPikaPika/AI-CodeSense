@@ -7,11 +7,18 @@ const geminiRouter=require("./Backend/Routes/geminiRouter");
 const auth=require("./Backend/Routes/loginRouter");
 const chat=require("./Backend/Routes/chatRouter");
 const http=require("http");
+const cors=require('cors');
 const {Server}=require('socket.io');
 const server=http.createServer(app);
 const io= new Server(server);
-const cookieParser=require("cookie-parser")
+const cookieParser=require("cookie-parser");
 
+app.set('trust proxy', 1);
+
+app.use(cors({
+  origin: "https://ai-codesense-ultimate.onrender.com/",  // exact frontend domain
+  credentials: true,  // allow cookies
+}));
 app.use(cookieParser());
 app.use(express.static('Frontend'));
 app.use(express.urlencoded({ extended: true }));
